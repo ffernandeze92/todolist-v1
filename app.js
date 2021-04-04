@@ -11,20 +11,32 @@ app.get("/",function(req,res){
   var currentDay = today.getDay();
   var day = "";
 
-  if(currentDay === 6 || currentDay === 0){
-    day ="Weekend";
-    //res.sendFile(__dirname + "/index.html
-    //res.write("<h1>it's weekend!</h1>");
-  //  res.write("<h1>it's weekend!</h1>");
-//    res.send();
-  }else{
-    day ="Weekday";
-//    res.write("<h1>I have to work!!!</h1>");
-//    res.write("<p>I have to work</p>");
-  //res.sendFile(__dirname + "/weekday.html")
-  //  res.send();
-  }
-  res.render("list",{kindOfDay:day});
+switch(currentDay){
+  case 0:
+    day = "Domingo";
+    break;
+  case 1:
+    day = "Lunes";
+    break;
+  case 2:
+    day = "Martes";
+    break;
+  case 3:
+    day = "Miercoles";
+    break;
+  case 4:
+    day = "Jueves";
+    break;
+  case 5:
+    day = "Viernes";
+    break;
+  case 6:
+    day = "Sabado";
+  break;
+  default:
+  console.log("ERROR: "+currentDay);
+}
+  res.render("list",{kindOfDay:day,day:day});
 
 });
 
